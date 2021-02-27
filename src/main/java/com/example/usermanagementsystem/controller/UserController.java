@@ -15,23 +15,23 @@ public class UserController {
     private UserRepository userRepository;
 
 
-    @GetMapping("/getusers")
+    @GetMapping("/users")
     public List<UserModel> getAllUsers() {
         return userRepository.findAll();
     }
 
-    @GetMapping("/getuser")
+    @GetMapping("/user")
     public Optional<UserModel> getUserById(@RequestParam String id) {
         return userRepository.findById(id);
     }
 
-    @PostMapping(value = "/adduser")
+    @PostMapping(value = "/users")
     public void addUser(@RequestParam String id, @RequestParam String name, @RequestParam String dataCreated, @RequestParam String emailAddress) {
         UserModel userModel = new UserModel(id, name, dataCreated, emailAddress);
         userRepository.save(userModel);
     }
 
-    @DeleteMapping("/deleteuser")
+    @DeleteMapping("/users")
     public void deleteUser(@RequestParam String id) {
         userRepository.deleteById(id);
     }
