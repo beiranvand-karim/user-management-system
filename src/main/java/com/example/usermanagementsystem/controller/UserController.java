@@ -5,6 +5,7 @@ import com.example.usermanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,14 +27,19 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public void addUser(@RequestParam String id, @RequestParam String name, @RequestParam String dataCreated, @RequestParam String emailAddress) {
+    public UserModel addUser(@RequestParam String id, @RequestParam String name, @RequestParam String emailAddress) {
+        Date date = new Date();
+        String dataCreated = date.toString();
         UserModel userModel = new UserModel(id, name, dataCreated, emailAddress);
         userRepository.save(userModel);
+        return userModel;
     }
 
     @DeleteMapping("/users")
-    public void deleteUser(@RequestParam String id) {
+    public Optional<UserModel> deleteUser(@RequestParam String id) {
+        Optional<UserModel> userModel = userRepository.findById(id);
         userRepository.deleteById(id);
+        return userModel;
     }
 
 }
