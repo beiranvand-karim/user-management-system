@@ -27,10 +27,10 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public UserModel addUser(@RequestParam String id, @RequestParam String name, @RequestParam String emailAddress) {
+    public UserModel addUser(@RequestParam String id, @RequestParam String firstName, @RequestParam String lastName , @RequestParam String emailAddress) {
         Date date = new Date();
         String dataCreated = date.toString();
-        UserModel userModel = new UserModel(id, name, dataCreated, emailAddress);
+        UserModel userModel = new UserModel(id, firstName,lastName, dataCreated, emailAddress);
         userRepository.save(userModel);
         return userModel;
     }

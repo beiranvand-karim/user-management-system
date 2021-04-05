@@ -42,8 +42,8 @@ class UnitApplicationTest {
         Date date = new Date();
 
         List<UserModel> users = new ArrayList<>();
-        UserModel user = new UserModel("1", "ali", date.toString(), "gmail@gmail.com");
-        UserModel user2 = new UserModel("2", "reza", date.toString(), "hello@gmail.com");
+        UserModel user = new UserModel("1", "ali","ahmadi", date.toString(), "gmail@gmail.com");
+        UserModel user2 = new UserModel("2", "reza","ahmadi", date.toString(), "hello@gmail.com");
 
         users.add(user);
         users.add(user2);
@@ -64,7 +64,7 @@ class UnitApplicationTest {
 
         Date date = new Date();
 
-        UserModel user = new UserModel("1", "ali", date.toString(), "gmail@gmail.com");
+        UserModel user = new UserModel("1", "ali","ahmadi", date.toString(), "gmail@gmail.com");
 
 
         when(userController.getUserById("1")).thenReturn(java.util.Optional.of(user));
@@ -86,15 +86,16 @@ class UnitApplicationTest {
     void shouldAddUser() throws Exception {
 
         Date date = new Date();
-        UserModel user = new UserModel("1", "ali", date.toString(), "gmail@gmail.com");
+        UserModel user = new UserModel("1", "ali","ahmadi", date.toString(), "gmail@gmail.com");
 
 
-        when(userController.addUser(user.getId(), user.getName(), user.getEmailAddress())).thenReturn(user);
+        when(userController.addUser(user.getId(), user.getFirstName(),user.getLastName(), user.getEmailAddress())).thenReturn(user);
 
         RequestBuilder request = MockMvcRequestBuilders
                 .post("/users")
                 .param("id", user.getId())
-                .param("name", user.getName())
+                .param("firstName", user.getFirstName())
+                .param("lastName",user.getLastName())
                 .param("emailAddress", user.getEmailAddress())
                 .accept(MediaType.APPLICATION_JSON);
 
@@ -112,7 +113,7 @@ class UnitApplicationTest {
     void shouldDeleteUserById() throws Exception {
 
         Date date = new Date();
-        UserModel user = new UserModel("1", "ali", date.toString(), "gmail@gmail.com");
+        UserModel user = new UserModel("1", "ali","ahmadi", date.toString(), "gmail@gmail.com");
 
 
         when(userController.deleteUser("1")).thenReturn(java.util.Optional.of(user));
