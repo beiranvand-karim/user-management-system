@@ -1,9 +1,6 @@
 package com.example.usermanagementsystem.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -12,13 +9,17 @@ public class UserModel {
 
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstName")
+    private String firstName;
 
-    @Column(name = "dataCreated")
-    private String dataCreated;
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "creationTime")
+    private String creationTime;
 
     @Column(name = "emailAddress")
     private String emailAddress;
@@ -26,35 +27,35 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(String id, String name, String dataCreated, String emailAddress) {
-        this.id = id;
-        this.name = name;
-        this.dataCreated = dataCreated;
+    public UserModel(String firstName, String lastName, String creationTime, String emailAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.creationTime = creationTime;
         this.emailAddress = emailAddress;
     }
 
-    public String getId() {
-        return id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getDataCreated() {
-        return dataCreated;
+    public String getCreationTime() {
+        return creationTime;
     }
 
-    public void setDataCreated(String dataCreated) {
-        this.dataCreated = dataCreated;
+    public void setCreationTime(String dataCreated) {
+        this.creationTime = dataCreated;
     }
 
     public String getEmailAddress() {
@@ -65,5 +66,3 @@ public class UserModel {
         this.emailAddress = emailAddress;
     }
 }
-
-

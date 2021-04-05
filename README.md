@@ -26,7 +26,7 @@ To download and install on other operating systems  [click here](https://www.pos
 
 To run the server:
 
-`sudo sevice postgresql start`
+`sudo service postgresql start`
 
 There are a few ways to utilize this account to access Postgres. One way is to switch over to the postgres account on 
 your server and access the Postgres prompt by typing:
@@ -53,6 +53,8 @@ To show databases, run the following commands.
 To connect to _**user-management-system**_ Database use PostgreSQL database command:
 > postgres=# `\c user-management-system;`
 
+TO show all tables:
+> postgres=# `\dt`
 ## Configuration file
 First open the project and go to _**src/main/resources**_ directory:
  
@@ -114,7 +116,7 @@ server.port=8081
  
  to add a user :
  
- `curl -X POST -d 'id'='1' -d 'name'='ali' -d 'emailAddress'='hello@gmail.com' http://localhost:8081/users`
+ `curl -X POST -d 'name'='ali' -d 'emailAddress'='hello@gmail.com' http://localhost:8081/users`
  
  To get a user by id :
  
@@ -123,3 +125,5 @@ server.port=8081
  To delete a user by id:
  
  `curl -X DELETE -G http://localhost:8081/users -d 'id'='1'`
+ 
+ 
