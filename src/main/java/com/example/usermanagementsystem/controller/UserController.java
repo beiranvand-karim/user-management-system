@@ -23,22 +23,22 @@ public class UserController {
 
     @GetMapping("/user")
     public Optional<UserModel> getUserById(@RequestParam String id) {
-        return userRepository.findById(id);
+        return userRepository.findById(Long.valueOf(id));
     }
 
     @PostMapping(value = "/users")
     public UserModel addUser(@RequestParam String firstName, @RequestParam String lastName , @RequestParam String emailAddress) {
         Date date = new Date();
-        String dataCreated = date.toString();
-        UserModel userModel = new UserModel( firstName,lastName, dataCreated, emailAddress);
+        String creationTime = date.toString();
+        UserModel userModel = new UserModel( firstName,lastName, creationTime, emailAddress);
         userRepository.save(userModel);
         return userModel;
     }
 
     @DeleteMapping("/users")
     public Optional<UserModel> deleteUser(@RequestParam String id) {
-        Optional<UserModel> userModel = userRepository.findById(id);
-        userRepository.deleteById(id);
+        Optional<UserModel> userModel = userRepository.findById(Long.valueOf(id));
+        userRepository.deleteById(Long.parseLong(id));
         return userModel;
     }
 

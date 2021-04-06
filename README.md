@@ -116,7 +116,7 @@ server.port=8081
  
  to add a user :
  
- `curl -X POST -d 'name'='ali' -d 'emailAddress'='hello@gmail.com' http://localhost:8081/users`
+ `curl -X POST -d 'firstName'='ali' -d 'lastName'='ahmadi' -d 'emailAddress'='hello@gmail.com' http://localhost:8081/users`
  
  To get a user by id :
  
@@ -126,4 +126,20 @@ server.port=8081
  
  `curl -X DELETE -G http://localhost:8081/users -d 'id'='1'`
  
+ ## Flyway
+ Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.
+ [more details and documentation](https://flywaydb.org/documentation/)
+ ___
+ To config flyway please add below configurations to _**application.properties**_:
  
+ 
+ ```
+ flyway.url=jdbc:postgresql://localhost:5432
+
+ flyway.schemas=user-management-system
+
+ flyway.user=spring_user
+
+ flyway.password=spring_user
+
+ ```

@@ -4,34 +4,40 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "users_tb")
+@Table(name = "users")
 public class UserModel {
 
 
     @Id
+    @Column(name = "id",unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
-    @Column(name = "firstName")
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "creationTime")
+    @Column(name = "creationtime")
     private String creationTime;
 
-    @Column(name = "emailAddress")
+    @Column(name = "emailaddress")
     private String emailAddress;
 
     public UserModel() {
     }
 
     public UserModel(String firstName, String lastName, String creationTime, String emailAddress) {
+        Long id = getId();
         this.firstName = firstName;
         this.lastName = lastName;
         this.creationTime = creationTime;
         this.emailAddress = emailAddress;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {

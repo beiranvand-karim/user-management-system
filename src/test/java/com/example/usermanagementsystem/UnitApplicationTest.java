@@ -118,7 +118,7 @@ class UnitApplicationTest {
         when(userController.deleteUser("1")).thenReturn(java.util.Optional.of(user));
         RequestBuilder request = MockMvcRequestBuilders
                 .delete("/users")
-                .param("id", "1")
+                .param("id","1")
                 .accept(MediaType.APPLICATION_JSON);
 
         String jsonText = JSONValue.toJSONString(user);
