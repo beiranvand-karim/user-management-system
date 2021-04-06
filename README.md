@@ -142,4 +142,6 @@ server.port=8081
 
  flyway.password=spring_user
 
+ spring.flyway.baseline-on-migrate=true
+
  ```
