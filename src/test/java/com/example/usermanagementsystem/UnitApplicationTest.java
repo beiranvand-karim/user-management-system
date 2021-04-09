@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -69,8 +71,7 @@ class UnitApplicationTest {
 
         when(userController.getUserById("1")).thenReturn(java.util.Optional.of(user));
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/user")
-                .param("id", "1")
+                .get("/user/1")
                 .accept(MediaType.APPLICATION_JSON);
 
         String jsonText = JSONValue.toJSONString(user);
@@ -89,24 +90,16 @@ class UnitApplicationTest {
         UserModel user = new UserModel("ali","ahmadi", date.toString(), "gmail@gmail.com");
 
 
-        when(userController.addUser(user.getFirstName(),user.getLastName(), user.getEmailAddress())).thenReturn(user);
+        when(userController.addUser(user)).thenReturn(user);
 
-        RequestBuilder request = MockMvcRequestBuilders
-                .post("/users")
-                .param("firstName", user.getFirstName())
-                .param("lastName",user.getLastName())
-                .param("emailAddress", user.getEmailAddress())
-                .accept(MediaType.APPLICATION_JSON);
+        String requestJson = JSONValue.toJSONString(user);
 
-        String jsonText = JSONValue.toJSONString(user);
+        this.mockMvc.perform(post("/users")
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(requestJson))
+                .andExpect(status().isOk());
 
-        MvcResult result = this.mockMvc.perform(request)
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().json(jsonText))
-                .andReturn();
     }
-
 
     @Test
     void shouldDeleteUserById() throws Exception {

@@ -11,7 +11,7 @@ public class UserModel {
     @Id
     @Column(name = "id",unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    protected Long id;
 
     @Column(name = "firstname")
     private String firstName;
@@ -28,6 +28,12 @@ public class UserModel {
     public UserModel() {
     }
 
+    public UserModel(String firstName, String lastName, String emailAddress){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+    }
+
     public UserModel(String firstName, String lastName, String creationTime, String emailAddress) {
         Long id = getId();
         this.firstName = firstName;
@@ -35,6 +41,8 @@ public class UserModel {
         this.creationTime = creationTime;
         this.emailAddress = emailAddress;
     }
+
+
 
     public Long getId() {
         return id;

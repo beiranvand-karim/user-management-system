@@ -21,16 +21,23 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/user")
-    public Optional<UserModel> getUserById(@RequestParam String id) {
+    @GetMapping("/user/{id}")
+    public Optional<UserModel> getUserById(@PathVariable String id) {
         return userRepository.findById(Long.valueOf(id));
     }
 
     @PostMapping(value = "/users")
-    public UserModel addUser(@RequestParam String firstName, @RequestParam String lastName , @RequestParam String emailAddress) {
+    public UserModel addUser(@RequestBody UserModel user) {
+
         Date date = new Date();
+
         String creationTime = date.toString();
-        UserModel userModel = new UserModel( firstName,lastName, creationTime, emailAddress);
+        UserModel userModel = new UserModel(
+                user.getFirstName(),
+                user.getLastName(),
+                creationTime,
+                user.getEmailAddress());
+
         userRepository.save(userModel);
         return userModel;
     }

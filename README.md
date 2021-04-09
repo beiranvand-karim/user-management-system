@@ -116,11 +116,11 @@ server.port=8081
  
  to add a user :
  
- `curl -X POST -d 'firstName'='ali' -d 'lastName'='ahmadi' -d 'emailAddress'='hello@gmail.com' http://localhost:8081/users`
+ `curl  -H "Content-type":"application/json" -X POST -d '{"firstName":"ali","lastName":"ahmadi","emailAddress":"hello@gmail.com"}' http://localhost:8081/users`
  
  To get a user by id :
  
- `curl -X GET -G http://localhost:8081/user -d 'id'='1'`
+ `curl -X GET -G http://localhost:8081/user/1`
  
  To delete a user by id:
  
