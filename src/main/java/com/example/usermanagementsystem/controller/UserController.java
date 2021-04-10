@@ -21,7 +21,7 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public Optional<UserModel> getUserById(@PathVariable String id) {
         return userRepository.findById(Long.valueOf(id));
     }
@@ -42,8 +42,8 @@ public class UserController {
         return userModel;
     }
 
-    @DeleteMapping("/users")
-    public Optional<UserModel> deleteUser(@RequestParam String id) {
+    @DeleteMapping("/users/{id}")
+    public Optional<UserModel> deleteUser(@PathVariable String id) {
         Optional<UserModel> userModel = userRepository.findById(Long.valueOf(id));
         userRepository.deleteById(Long.parseLong(id));
         return userModel;

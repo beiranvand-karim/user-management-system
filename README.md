@@ -120,11 +120,11 @@ server.port=8081
  
  To get a user by id :
  
- `curl -X GET -G http://localhost:8081/user/1`
+ `curl -X GET -G http://localhost:8081/users/1`
  
  To delete a user by id:
  
- `curl -X DELETE -G http://localhost:8081/users -d 'id'='1'`
+ `curl -X DELETE -G http://localhost:8081/users/1`
  
  ## Flyway
  Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.
