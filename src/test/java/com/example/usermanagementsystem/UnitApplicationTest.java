@@ -37,7 +37,7 @@ class UnitApplicationTest {
     @MockBean
     private UserController userController;
 
-    private String id = "1";
+    private long id = 1;
 
     @Test
     void shouldAddUser() throws Exception {
